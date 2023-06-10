@@ -7,7 +7,6 @@ router = DefaultRouter()
 router.register('posts', PostViewSet, basename='post')
 router.register('groups', GroupViewSet, basename='group')
 
-# Необходимо добавить отдельный роутер для комментариев, используя `basename` без угловых скобок
 comment_router = DefaultRouter()
 comment_router.register(r'', CommentViewSet, basename='comment')
 
@@ -17,3 +16,4 @@ urlpatterns = [
          include(comment_router.urls), 
          name='comment-list'),
 ]
+

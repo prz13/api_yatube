@@ -6,10 +6,14 @@ from .views import CommentViewSet, GroupViewSet, PostViewSet
 router = DefaultRouter()
 router.register('posts', PostViewSet, basename='post')
 router.register('groups', GroupViewSet, basename='group')
-router.register('posts/<int:post_id>/comments', CommentViewSet, basename='comment')
+
+# Необходимо добавить отдельный роутер для комментариев, используя `basename` без угловых скобок
+comment_router = DefaultRouter()
+comment_router.register(r'', CommentViewSet, basename='comment')
 
 urlpatterns = [
     path('', include(router.urls)),
-    path('posts/<int:post_id>/comments/', CommentViewSet.as_view({'get': 'list', 'post': 'create'}), name='comment-list'),
-
+    path('posts/<int:post_id>/comments/', 
+         include(comment_router.urls), 
+         name='comment-list'),
 ]

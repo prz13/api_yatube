@@ -150,3 +150,8 @@ static/
 yatube_api/posts/static/
 media/
 
+
+
+# моё
+urls_temp.py
+views_temp.py
